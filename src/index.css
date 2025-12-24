@@ -1,82 +1,94 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@charset "UTF-8";
 
 :root {
-  --background: #0f0f0f;
-  --surface: #1a1a1a;
-  --surface-light: #2a2a2a;
-  --primary: #ff2d55;
-  --primary-dark: #e6002d;
-  --text: #ffffff;
-  --text-secondary: #a0a0a0;
-  --border: #2a2a2a;
-  --success: #30d158;
-  --warning: #ffd60a;
-  --info: #64d2ff;
+  --bg-primary: #0f0f1e;
+  --bg-secondary: #1a1a2e;
+  --bg-tertiary: #252540;
+  --pink-500: #ec4899;
+  --pink-600: #db2777;
+  --pink-400: #f472b6;
+  --cyan-500: #06b6d4;
+  --purple-500: #a855f7;
+  --green-500: #10b981;
+  --red-500: #ef4444;
+  --yellow-500: #eab308;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--background);
-  color: var(--text);
-  overscroll-behavior: none;
+  background: var(--bg-primary);
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  touch-action: pan-y;
+  user-select: none;
 }
 
-#root {
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
-}
-
-/* iOS safe areas */
-@supports (padding: max(0px)) {
-  body {
-    padding-left: max(0px, env(safe-area-inset-left));
-    padding-right: max(0px, env(safe-area-inset-right));
-  }
-}
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--surface);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--text-secondary);
-  border-radius: 3px;
-}
-
-/* Custom button reset */
 button {
-  font-family: inherit;
-  border: none;
-  background: none;
-  cursor: pointer;
-  -webkit-appearance: none;
-  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
 }
 
 input, textarea {
-  font-family: inherit;
-  border: none;
-  background: none;
-  -webkit-appearance: none;
-  appearance: none;
+  -webkit-user-select: text;
+  user-select: text;
 }
 
-/* Selection */
-::selection {
-  background: var(--primary);
-  color: white;
+/* Safe area for iOS notch */
+.safe-area {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--pink-500);
+  border-radius: 3px;
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
 }

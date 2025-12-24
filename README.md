@@ -1,53 +1,42 @@
 # 🏋️ AI Workout Tracker
 
-A mobile-first iOS workout app with AI-powered workout generation using ChatGPT API, muscle recovery tracking, and progressive overload calculations.
+**AI-powered workout generator using ChatGPT** with muscle recovery tracking, progressive overload, and weekly set targets. Built for mobile (iOS optimized) but works great on desktop too!
 
-![Workout App](screen.png)
+![Workout Tracker](https://img.shields.io/badge/React-18.2-blue) ![Vite](https://img.shields.io/badge/Vite-4.4-purple) ![OpenAI](https://img.shields.io/badge/ChatGPT-API-green)
 
 ## ✨ Features
 
-### 🤖 AI Workout Generation
-- ChatGPT-powered workout creation
-- Smart muscle recovery analysis
-- Personalized exercise recommendations
-- Quick workout templates (Push/Pull/Legs/Full Body)
-- Custom workout prompts
+### 🧠 AI-Powered Workouts
+- **ChatGPT Integration**: Generates personalized workouts using GPT-4o-mini
+- **Smart Muscle Prioritization**: Focuses on fresh muscles (>70% recovery)
+- **Progressive Overload**: Automatically increases volume/intensity by 5-10%
+- **Exercise Variety**: Avoids repeating recent exercises
+- **Equipment Matching**: Only suggests exercises for your available equipment
 
-### 💪 12 Muscle Group Tracking
-- Chest, Back, Shoulders
-- Biceps, Triceps, Forearms
-- Abs, Obliques, Lower Back
-- Quads, Hamstrings, Calves
-- Real-time recovery status (3+ days = fresh)
-- Visual recovery indicators
+### 📊 Recovery Tracking
+- **12 Muscle Groups**: Chest, back, shoulders, biceps, triceps, forearms, quads, hamstrings, glutes, calves, core, traps
+- **Visual Muscle Map**: Front/back view showing recovery status
+- **Soreness-Based Recovery**: Rate soreness after each workout (1-10 scale)
+- **Automatic Recovery**: Muscles heal 10%/day, soreness decreases 1 point/day
+- **Days Since Trained**: Track rest periods for each muscle group
 
 ### 🎯 Weekly Set Targets
-- Push Muscles: 27 sets/week
-- Pull Muscles: 15 sets/week
-- Leg Muscles: 21 sets/week
-- Hexagon progress visualization
-- Automatic tracking
+- **Hexagon Progress Visualization**: Beautiful animated progress indicator
+- **3 Muscle Categories**: Push (chest/shoulders/triceps), Pull (back/biceps), Legs (quads/hams/glutes/calves)
+- **Historical Tracking**: See past weeks' completion rates
+- **Auto-Updated**: Targets increase automatically as you complete them
 
-### 📊 Workout Logging
-- Complete workout history
-- Exercise details (sets, reps, weight)
-- Volume tracking
-- Progressive overload monitoring
-- LocalStorage persistence
+### 📱 Complete Workout Logger
+- **Workout History**: Track all past sessions with dates
+- **Exercise Details**: Sets, reps, weight, duration, muscles worked
+- **Total Stats**: Lifetime workout count, total training time
+- **Calendar View**: See which days you trained
 
-### 📱 Mobile-First iOS Design
-- Optimized for iPhone
-- iOS safe areas support
-- Smooth animations (Framer Motion)
-- Bottom navigation
-- Gesture-friendly UI
-- Dark mode
-
-## 🚀 Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+
-- OpenAI API key
+- Node.js 16+ installed
+- OpenAI API key ([Get one here](https://platform.openai.com/api-keys))
 
 ### Installation
 
@@ -62,166 +51,214 @@ cd Workout_App
 npm install
 ```
 
-3. **Set up environment variables**
-Create a `.env` file in the root directory:
-```bash
-VITE_OPENAI_API_KEY=your_openai_api_key_here
+3. **Add your OpenAI API key**
+
+Open `src/App.jsx` and replace line 13:
+```javascript
+const OPENAI_API_KEY = 'YOUR_OPENAI_API_KEY_HERE';
 ```
 
-4. **Start development server**
+With your actual key:
+```javascript
+const OPENAI_API_KEY = 'sk-proj-...your-key-here';
+```
+
+4. **Run the app**
 ```bash
 npm run dev
 ```
 
-5. **Open in browser**
-- Navigate to `http://localhost:5173`
-- For mobile testing: Use browser dev tools (iPhone 14 Pro viewport)
-- For bolt.new: Import the project folder
+Open [http://localhost:3000](http://localhost:3000) in your browser!
 
-## 🎨 Tech Stack
+### For bolt.new Testing
 
-- **Frontend**: React 18
-- **Build Tool**: Vite 5
-- **Styling**: CSS3 with CSS Variables
-- **Animations**: Framer Motion
-- **Icons**: Lucide React
-- **AI**: OpenAI GPT-4o-mini
-- **Storage**: LocalStorage
-- **Mobile**: iOS optimized with safe areas
+1. **Upload all files** to bolt.new
+2. **Edit `src/App.jsx`** and add your OpenAI API key
+3. **Click "Run"** to start the development server
+4. **Test on mobile** using the preview URL
 
-## 📖 Usage
+## 📖 Usage Guide
 
-### 1. Generate AI Workout
-1. Tap the `+` floating action button
-2. Choose a workout type:
-   - 💪 Push Day
-   - 🔙 Pull Day
-   - 🦵 Leg Day
-   - 💪 Upper Body
-   - 🏋️ Full Body
-   - ✨ Custom (describe your own)
-3. AI generates personalized workout based on:
-   - Fresh/recovered muscles (3+ days rest)
-   - Weekly volume targets
-   - Your preferences
+### First Workout
 
-### 2. Track Recovery
-- Navigate to **Body** tab
-- View all 12 muscle groups
-- See days since last workout
-- Check which muscles are fresh (green)
-- Plan your next workout accordingly
+1. **Tap "Generate AI Workout"** on the home screen
+2. **Wait 3-5 seconds** for ChatGPT to generate your personalized workout
+3. **Review the exercises**: 6 exercises with sets, reps, weight, and form cues
+4. **Complete your workout**
+5. **Rate muscle soreness** (1-10 for each muscle group worked)
 
-### 3. Monitor Targets
-- Go to **Targets** tab
-- View weekly set goals by muscle group
-- Track progress with hexagon visualization
-- Adjust training volume as needed
+### Viewing Recovery
 
-### 4. Review History
-- Open **Log** tab
-- Browse past workouts
-- Analyze volume and frequency
-- Track progressive overload
+1. **Tap "Body"** in the bottom navigation
+2. **Toggle Front/Back** view to see all muscle groups
+3. **Check freshness levels**:
+   - 🟢 **Green (80-100%)**: Fresh, ready to train
+   - 🟡 **Yellow (50-79%)**: Recovering
+   - 🔴 **Red (0-49%)**: Needs rest
+4. **Plan next workout** around recovered muscles
 
-## 🔧 Configuration
+### Tracking Progress
 
-### Customize Weekly Targets
-Edit `src/App.jsx`:
+1. **Tap "Targets"** to see weekly set goals
+2. **View hexagon progress** (overall completion %)
+3. **Check individual muscle groups**:
+   - Push: 27 sets/week
+   - Pull: 15 sets/week  
+   - Legs: 21 sets/week
+4. **See historical performance** (past 4 weeks)
+
+### Workout Log
+
+1. **Tap "Log"** to see all past workouts
+2. **View total stats**: Workout count, total training time
+3. **Tap any workout** to see exercise details
+4. **Filter by date** (coming soon)
+
+## 🔧 Customization
+
+### Change AI Model
+
+In `src/App.jsx`, line 38:
 ```javascript
-const [weeklyTargets, setWeeklyTargets] = useState({
-  pushMuscles: { current: 0, target: 27, name: 'Push Muscles' },
-  pullMuscles: { current: 0, target: 15, name: 'Pull Muscles' },
-  legMuscles: { current: 0, target: 21, name: 'Leg Muscles' }
-});
+model: 'gpt-4o-mini', // or 'gpt-4' for better results (higher cost)
 ```
 
-### Change Recovery Threshold
-Default is 3 days. Modify in `src/App.jsx`:
+### Adjust Progressive Overload
+
+In `src/App.jsx`, the prompt (lines 19-60), modify:
 ```javascript
-const isFresh = days >= 3; // Change 3 to your preferred days
+2. Apply progressive overload (increase reps/weight by 5-10% from recent workouts)
 ```
 
-### Customize AI Model
-Edit the OpenAI model in `src/App.jsx`:
+To:
 ```javascript
-model: 'gpt-4o-mini', // Change to gpt-4, gpt-3.5-turbo, etc.
+2. Apply progressive overload (increase reps/weight by 3-5% from recent workouts) // More conservative
+// or
+2. Apply progressive overload (increase reps/weight by 10-15% from recent workouts) // More aggressive
 ```
 
-## 📱 Bolt.new Deployment
+### Add Custom Equipment
 
-1. Create new project on [bolt.new](https://bolt.new)
-2. Upload all files from this repository
-3. Add environment variable:
-   - Key: `VITE_OPENAI_API_KEY`
-   - Value: Your OpenAI API key
-4. Run `npm run dev`
-5. Test on mobile viewport
-
-## 🏗️ Project Structure
-
-```
-Workout_App/
-├── src/
-│   ├── App.jsx          # Main app component
-│   ├── App.css          # Mobile-first styles
-│   ├── main.jsx         # React entry point
-│   └── index.css        # Global styles
-├── index.html           # HTML template
-├── package.json         # Dependencies
-├── vite.config.js       # Vite configuration
-├── .env                 # Environment variables (create this)
-├── .gitignore          # Git ignore rules
-└── README.md           # This file
+In `src/App.jsx`, update `profile.equipment` (line 119):
+```javascript
+equipment: ['dumbbells', 'bench', 'barbell', 'cables', 'resistance bands']
 ```
 
-## 🎯 Roadmap
+### Change Weekly Targets
 
-- [ ] Add exercise database
-- [ ] Implement workout tracking during session
-- [ ] Add rest timer
-- [ ] Progressive overload suggestions
-- [ ] Export workout data
-- [ ] Social sharing
-- [ ] PWA support
-- [ ] Offline mode
-- [ ] Exercise form videos
-- [ ] Nutrition tracking
+In `src/App.jsx`, update `weeklyTargets` (line 139):
+```javascript
+weeklyTargets: {
+  pushSets: { current: 0, target: 30 }, // Increase from 27
+  pullSets: { current: 0, target: 20 }, // Increase from 15
+  legSets: { current: 0, target: 25 }   // Increase from 21
+}
+```
+
+## 🎨 Mobile Optimization
+
+### iOS Features
+- **Safe Area Support**: Respects iPhone notch and home indicator
+- **Standalone Mode**: Add to home screen for app-like experience
+- **Touch Optimized**: Large tap targets, no accidental taps
+- **Smooth Animations**: Hardware-accelerated transitions
+- **Responsive Layout**: Adapts to all screen sizes
+
+### Android Features
+- **Material Design**: Follows Android design principles
+- **Back Button Support**: Native back navigation
+- **PWA Ready**: Installable from Chrome
+
+## 💰 API Costs
+
+### OpenAI Pricing (as of Dec 2024)
+
+**GPT-4o-mini** (recommended):
+- Input: $0.15 / 1M tokens
+- Output: $0.60 / 1M tokens
+- **Per workout**: ~$0.001 (0.1 cents)
+- **Monthly cost (16 workouts)**: ~$0.02
+
+**GPT-4o** (premium):
+- Input: $2.50 / 1M tokens
+- Output: $10.00 / 1M tokens  
+- **Per workout**: ~$0.015 (1.5 cents)
+- **Monthly cost (16 workouts)**: ~$0.24
+
+### Cost Optimization Tips
+
+1. **Use GPT-4o-mini**: 15x cheaper, great for most users
+2. **Cache workouts**: Store generated workouts locally
+3. **Batch requests**: Generate multiple days at once
+4. **Fallback workouts**: Use pre-built workouts when API fails
 
 ## 🐛 Troubleshooting
 
-### AI Generation Fails
-- Check OpenAI API key is correct
-- Verify you have API credits
-- Check browser console for errors
+### "API Error" when generating workout
 
-### LocalStorage Issues
-- Clear browser storage
-- Check browser privacy settings
-- Ensure cookies/storage enabled
+**Solution**:
+1. Check your API key is correct in `src/App.jsx`
+2. Verify you have OpenAI credits: https://platform.openai.com/usage
+3. Check browser console for specific error
+4. Try using the fallback workout (automatically triggers on API failure)
 
-### Mobile Layout Issues
-- Use Chrome DevTools device emulation
-- Test on actual iOS device
-- Check viewport meta tag
+### Workout is too easy/hard
+
+**Solution**:
+1. Rate soreness accurately after workouts (AI learns from this)
+2. Change experience level in profile (Beginner/Intermediate/Advanced)
+3. Manually adjust progressive overload rate in the prompt
+
+### Recovery not updating
+
+**Solution**:
+1. Check `localStorage` is enabled in browser settings
+2. Try clearing app data: `localStorage.clear()`
+3. Manually rate soreness after each workout (triggers recovery updates)
+
+### App not saving data
+
+**Solution**:
+1. Enable cookies and site data in browser
+2. Check storage quota: Chrome DevTools > Application > Storage
+3. Try in private/incognito mode to test
+4. Consider implementing cloud backup (Firebase, Supabase)
+
+## 🔮 Future Features
+
+- [ ] **Exercise Library**: Video demonstrations and form tips
+- [ ] **Nutrition Tracking**: Calorie/macro logging
+- [ ] **Social Features**: Share workouts, leaderboards
+- [ ] **Wearable Integration**: Apple Watch, Fitbit sync
+- [ ] **Advanced Analytics**: 1RM calculators, volume landmarks
+- [ ] **Cloud Sync**: Multi-device support
+- [ ] **Injury Prevention**: Form analysis, deload weeks
+
+## 🤝 Contributing
+
+Pull requests welcome! For major changes:
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to branch: `git push origin feature/amazing-feature`
+5. Open a pull request
 
 ## 📄 License
 
-MIT License - feel free to use this project for learning or personal use.
+MIT License - feel free to use, modify, and distribute!
 
-## 🙏 Acknowledgments
+## 🙏 Credits
 
-- OpenAI for ChatGPT API
-- Framer Motion for animations
-- Lucide for icons
-- The fitness community for inspiration
-
-## 💬 Contact
-
-Kyle Thompson - [@Kyletho2020](https://github.com/Kyletho2020)
-
-Project Link: [https://github.com/Kyletho2020/Workout_App](https://github.com/Kyletho2020/Workout_App)
+- **AI**: OpenAI ChatGPT (GPT-4o-mini)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Framework**: [React](https://react.dev/) + [Vite](https://vitejs.dev/)
 
 ---
 
-Built with ❤️ and 💪 for the fitness community
+**Built with ❤️ for fitness enthusiasts**
+
+Questions? Open an issue or reach out!
+
+🐛 Report bugs: [GitHub Issues](https://github.com/Kyletho2020/Workout_App/issues)  
+💬 Discussions: [GitHub Discussions](https://github.com/Kyletho2020/Workout_App/discussions)
